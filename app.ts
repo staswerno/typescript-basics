@@ -16,5 +16,7 @@ const number1 = 6;
 const number2 = 1.8;
 const printResult = true;
 const resultPhrase = "Result is: ";
+// resultPhrase = 0;
+// 'not assignable to type' error!
 
 add(number1, number2, printResult, resultPhrase);
