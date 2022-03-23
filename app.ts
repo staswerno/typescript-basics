@@ -9,11 +9,18 @@
 // };
 
 // do this
+// NOTE! only adding schema because need to add tuple! normally don't!
 
-const person = {
+const person: {
+	name: string;
+	age: number;
+	hobbies: string[];
+	role: [number, string];
+} = {
 	name: "Stasi",
 	age: 35,
 	hobbies: ["yoga", "gaming"],
+	role: [2, "author"],
 };
 
 // array of strings:
