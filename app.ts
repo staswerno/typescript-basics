@@ -1,78 +1,37 @@
-// can do this but don't, let TS infer
+// union types
+// sometimes needs runtime type check like below (if/else)
+// ensures function can work with multiple values
 
-// const person: {
-//     name: string;
-//     age: number;
-// } = {
-// 	name: "Stasi",
-// 	age: 35,
-// };
+type combinable = number | string;
+type converter = "as-number" | "as-text";
 
-// do this
-
-// const person = {
-// 	name: "Stasi",
-// 	age: 35,
-// 	hobbies: ["yoga", "gaming"]
-// };
-
-// but, add schema if want to add tuple
-
-// const person: {
-// 	name: string;
-// 	age: number;
-// 	hobbies: string[];
-// 	role: [number, string];
-// } = {
-// 	name: "Stasi",
-// 	age: 35,
-// 	hobbies: ["yoga", "gaming"],
-// 	role: [2, "author"],
-// };
-
-// array of strings:
-// string[];
-// array of anything:
-// any[];
-
-// let favoriteActivities: string[];
-// favoriteActivities = ["cuddling"];
-
-// *enum*
-
-// old scool way:
-
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
-
-// TS way - each below assigned a number.
-// can also assign own numbers: enum Role { ADMIN = 5, READ_ONLY, AUTHOR };
-enum Role {
-	ADMIN,
-	READ_ONLY,
-	AUTHOR,
-}
-
-const person = {
-	name: "Stasi",
-	age: 35,
-	hobbies: ["yoga", "gaming"],
-	role: Role.ADMIN,
+const combine = (
+	input1: combinable,
+	input2: combinable,
+	resultConversion: converter
+) => {
+	let result;
+	if (
+		(typeof input1 === "number" && typeof input2 === "number") ||
+		resultConversion === "as-number"
+	) {
+		result = +input1 + +input2;
+	} else {
+		result = input1.toString() + input2.toString();
+	}
+	// if (resultConversion === "as-number") {
+	// 	return +result;
+	// } else {
+	// 	return result.toString();
+	// }
+	return result;
 };
 
-console.log(person);
-// errors on below as prperty doesn't exist
-// console.log(person.nickname);
+const combinedAges = combine(30, 26, "as-number");
+console.log(combinedAges);
 
-for (const hobby of person.hobbies) {
-	console.log(hobby.toUpperCase());
-}
-// can use string method as knows must be a string
-// would get error on console.log(hobby.map); as not an array
+const combinedStringAges = combine("30", "26", "as-number");
+console.log(combinedStringAges);
 
-//enum log
-
-if (person.role === Role.ADMIN) {
-	console.log("is admin");
-}
+const combinedNames = combine("Fred", "Astaire", "as-text");
+console.log(combinedNames);
