@@ -9,3 +9,10 @@ function printResult2(num: number): void {
 }
 
 printResult2(add2(5, 12));
+
+// let combineValues: Function;
+let combineValues: (a: number, b: number) => number;
+
+combineValues = add2;
+
+console.log(combineValues(8, 8));
