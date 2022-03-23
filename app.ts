@@ -10,6 +10,7 @@ function printResult2(num: number): void {
 
 //void return type here means, if you add a return, nothing will be returned
 //but you won't get punished for it
+//so, good to use void
 function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
 	const result = n1 + n2;
 	cb(result);
