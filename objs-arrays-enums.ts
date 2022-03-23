@@ -48,6 +48,7 @@
 
 // TS way - each below assigned a number.
 // can also assign own numbers: enum Role { ADMIN = 5, READ_ONLY, AUTHOR };
+
 enum Role {
 	ADMIN,
 	READ_ONLY,
@@ -71,8 +72,7 @@ for (const hobby of person.hobbies) {
 // can use string method as knows must be a string
 // would get error on console.log(hobby.map); as not an array
 
-//enum log
-
 if (person.role === Role.ADMIN) {
 	console.log("is admin");
 }
+//enum log
